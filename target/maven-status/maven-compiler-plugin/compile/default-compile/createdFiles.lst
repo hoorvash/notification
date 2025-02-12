@@ -1,0 +1,5 @@
+com\notification\model\Notification.class
+com\notification\NotificationServiceApplication.class
+com\notification\controller\NotificationController.class
+com\notification\service\NotificationService.class
+com\notification\config\WebSocketConfig.class

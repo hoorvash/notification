@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Notification Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+    <h2>WebSocket Notification Test</h2>
+    <div id="notifications"></div>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:8080/ws/notifications');
+        const stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function(frame) {
+            console.log('Connected: ' + frame);
+            
+            // Subscribe to broadcast notifications
+            stompClient.subscribe('/topic/notifications/broadcast', function(notification) {
+                showNotification(JSON.parse(notification.body));
+            });
+            
+            // Subscribe to personal notifications (replace 'user123' with actual user ID)
+            stompClient.subscribe('/topic/notifications/user123', function(notification) {
+                showNotification(JSON.parse(notification.body));
+            });
+        });
+
+        function showNotification(notification) {
+            const notificationsDiv = document.getElementById('notifications');
+            const notificationElement = document.createElement('div');
+            notificationElement.innerHTML = `
+                <p>
+                    <strong>${notification.type}</strong>: ${notification.message}
+                    <br>
+                    <small>${notification.timestamp}</small>
+                </p>
+            `;
+            notificationsDiv.appendChild(notificationElement);
+        }
+    </script>
+</body>
+</html> 
