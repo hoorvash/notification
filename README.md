@@ -3,24 +3,30 @@
 A real-time notification service built with Spring Boot and WebSocket. This service allows sending notifications to connected clients in real-time using WebSocket protocol.
 
 ## Technologies
-- Java 17
-- Spring Boot
+- Java 18
+- Spring Boot 2.7.3
 - WebSocket
 - Spring WebSocket
 - Lombok
 - Maven
+- Docker
 
 ## Features
 - Real-time notifications via WebSocket
 - Support for multiple clients
 - Notification broadcasting
 - Connection handling
+- Docker support
+
+## Prerequisites
+- Java 18 or higher
+- Maven
+- Docker
+
+## Project Structure
+
 
 ## Getting Started
-
-### Prerequisites
-- Java 17 or higher
-- Maven
 
 ### Running the Application
 1. Clone the repository
